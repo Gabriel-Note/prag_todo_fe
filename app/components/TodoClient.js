@@ -11,24 +11,15 @@ console.log("useTodos type:", typeof useTodos);
 
 export default function TodoClient({todoClientData}) {
     const [showTodos, setShowTodos] = useState(true);
-    //const [todos, setTodos] = useState(todoClientData);
     const [task, setTask] = useState("");
-    //const { todos, refreshTodos } = useTodos(todoClientData);
-    const result = useTodos(todoClientData);
-    console.log("useTodos result:", result); // Debug: see what's returned
-    const { todos, refreshTodos } = result;
-
-    console.log("refreshTodos type:", typeof refreshTodos); // Should be "function"
-
+    const { todos, refreshTodos } = useTodos(todoClientData);
 
     const handleCreateTask = async (e) => {
     e.preventDefault();
     await createTask(task);
     alert("Task created successfully!");
     setTask("");
-    console.log("About to call refresh");
     refreshTodos()
-    console.log("refresh called");
 
     }
 
