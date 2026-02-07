@@ -4,16 +4,32 @@ import { useState } from "react";
 import TodoList from "./TodoList";
 import Image from "next/image";
 import createTask from "../api/api_calls"
+import { useTodos } from "../hooks/useTodos.js";
+
+console.log("useTodos imported:", useTodos);
+console.log("useTodos type:", typeof useTodos);
 
 export default function TodoClient({todoClientData}) {
     const [showTodos, setShowTodos] = useState(true);
-    const [todos, setTodos] = useState(todoClientData);
+    //const [todos, setTodos] = useState(todoClientData);
     const [task, setTask] = useState("");
+    //const { todos, refreshTodos } = useTodos(todoClientData);
+    const result = useTodos(todoClientData);
+    console.log("useTodos result:", result); // Debug: see what's returned
+    const { todos, refreshTodos } = result;
+
+    console.log("refreshTodos type:", typeof refreshTodos); // Should be "function"
+
 
     const handleCreateTask = async (e) => {
     e.preventDefault();
-    createTask(task);
+    await createTask(task);
+    alert("Task created successfully!");
     setTask("");
+    console.log("About to call refresh");
+    refreshTodos()
+    console.log("refresh called");
+
     }
 
   return (
@@ -48,7 +64,7 @@ export default function TodoClient({todoClientData}) {
 
       {showTodos && (
         <>
-          <TodoList todoListData={todoClientData} />
+          <TodoList todoListData={todos} />
         </>
       )}
     </section>
