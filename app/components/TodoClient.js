@@ -28,7 +28,7 @@ export default function TodoClient({todoClientData}) {
       <h1 className="mb-4 text-2xl font-semibold">📝 My Todos</h1>
 
       {/* Create Form */}
-      <form onSubmit={handleCreateTask} className="mb-4 space-y-2">
+      <form onSubmit={handleCreateTask} className="mb-4 space-y-2 text-black">
         <input
           type="text"
           placeholder="Enter task here"
