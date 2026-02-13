@@ -23,8 +23,8 @@ export default function TodoClient({todoClientData}) {
     }
 
   return (
-    <section className="w-full max-w-md rounded-xl bg-white p-6 shadow">
-      <h1 className="mb-4 text-2xl text-zinc-800 font-bold">📝 My Todos</h1>
+    <section className="mx-auto w-full max-w-lg rounded-xl bg-white border-4 p-6 shadow">
+      <h1 className="mb-4 text-2xl text-center text-zinc-800 font-bold">📝 My Todos</h1>
 
       {/* Create Form */}
       <form onSubmit={handleCreateTask} className="mb-4 space-y-2 text-black">
@@ -53,7 +53,7 @@ export default function TodoClient({todoClientData}) {
       </button>
 
       {showTodos && (
-        <div className="bg-yellow-100 border-2 border-green-500 rounded-md p-4">
+        <div className="bg-rose-800 border-2 border-green-900 rounded-md p-4">
           <TodoList todoListData={todos} />
         </div>
       )}

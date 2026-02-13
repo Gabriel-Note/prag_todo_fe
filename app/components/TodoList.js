@@ -10,13 +10,13 @@ export default function TodoList({ todoListData }) {
       {todoListData && todoListData.map((todo) => (
         <div
           key={todo.id}
-          className="relative p-3 border rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors"
+          className="relative p-2 border rounded-lg gap-x-4 bg-gray-50 hover:bg-gray-100 transition-colors"
           onMouseEnter={() => setHoveredId(todo.id)}
           onMouseLeave={() => setHoveredId(null)}
         >
           {/* Task text */}
-          <div className="pr-20">
-            <p className="text-gray-800">{todo.task}</p>
+          <div className="pr-32">
+            <p className="text-gray-800 break-words">{todo.task}</p>
           </div>
 
           {/* Buttons - show on hover */}
