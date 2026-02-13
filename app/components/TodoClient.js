@@ -17,7 +17,6 @@ export default function TodoClient({todoClientData}) {
     const handleCreateTask = async (e) => {
     e.preventDefault();
     await createTask(task);
-    alert("Task created successfully!");
     setTask("");
     refreshTodos()
 
