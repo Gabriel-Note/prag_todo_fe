@@ -3,7 +3,7 @@
 import { useState } from "react";
 import TodoList from "./TodoList";
 import Image from "next/image";
-import createTask from "../api/api_calls"
+import { createTask } from "../api/api_calls"
 import { useTodos } from "../hooks/useTodos.js";
 
 console.log("useTodos imported:", useTodos);
@@ -18,7 +18,7 @@ export default function TodoClient({todoClientData}) {
     e.preventDefault();
     await createTask(task);
     setTask("");
-    refreshTodos()
+    refreshTodos();
 
     }
 
