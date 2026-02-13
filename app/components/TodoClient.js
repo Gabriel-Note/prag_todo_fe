@@ -4,16 +4,22 @@ import { useState } from "react";
 import TodoList from "./TodoList";
 import Image from "next/image";
 import createTask from "../api/api_calls"
+import { useTodos } from "../hooks/useTodos.js";
+
+console.log("useTodos imported:", useTodos);
+console.log("useTodos type:", typeof useTodos);
 
 export default function TodoClient({todoClientData}) {
     const [showTodos, setShowTodos] = useState(true);
-    const [todos, setTodos] = useState(todoClientData);
     const [task, setTask] = useState("");
+    const { todos, refreshTodos } = useTodos(todoClientData);
 
     const handleCreateTask = async (e) => {
     e.preventDefault();
-    createTask(task);
+    await createTask(task);
     setTask("");
+    refreshTodos()
+
     }
 
   return (
@@ -21,7 +27,7 @@ export default function TodoClient({todoClientData}) {
       <h1 className="mb-4 text-2xl font-semibold">📝 My Todos</h1>
 
       {/* Create Form */}
-      <form onSubmit={handleCreateTask} className="mb-4 space-y-2">
+      <form onSubmit={handleCreateTask} className="mb-4 space-y-2 text-black">
         <input
           type="text"
           placeholder="Enter task here"
@@ -48,7 +54,7 @@ export default function TodoClient({todoClientData}) {
 
       {showTodos && (
         <>
-          <TodoList todoListData={todoClientData} />
+          <TodoList todoListData={todos} />
         </>
       )}
     </section>
