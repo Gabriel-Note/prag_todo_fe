@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { useState } from "react";
+import { editTask } from "../api/api_calls"
 
-export default function TodoList({ todoListData, onEdit, onDelete }) {
+export default function TodoList({ todoListData, onDelete }) {
   const [hoveredId, setHoveredId] = useState(null);
   const [editingId, setEditingId] = useState(null);
   const [editText, setEditText] = useState("");
@@ -11,8 +12,9 @@ export default function TodoList({ todoListData, onEdit, onDelete }) {
     setEditText(todo.task);
   };
 
-  const handleSaveEdit = (todo) => {
-    onEdit({ ...todo, task: editText });
+  const handleSaveEdit = async (todo) => {
+    const newTask = {...todo, task: editText}
+    await editTask(newTask)
     setEditingId(null);
     setEditText("");
   };
