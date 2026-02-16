@@ -1,26 +1,37 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TodoList from "./TodoList";
-import Image from "next/image";
 import { createTask } from "../api/api_calls"
-import { useTodos } from "../hooks/useTodos.js";
 
-console.log("useTodos imported:", useTodos);
-console.log("useTodos type:", typeof useTodos);
+export default function TodoClient() {
+  const [showTodos, setShowTodos] = useState(true);
+  const [task, setTask] = useState("");
+  const [todos, setTodos] = useState([]);
+  /* const { todos, refreshTodos } = useTodos(todoClientData); */
+  /* const {refreshLocal, setRefreshLocal } = useState(false); */
 
-export default function TodoClient({todoClientData}) {
-    const [showTodos, setShowTodos] = useState(true);
-    const [task, setTask] = useState("");
-    const { todos, refreshTodos } = useTodos(todoClientData);
+  async function fetchTodos() {
+    try {
+      const response = await fetch("http://localhost:8080/tasks");
+      const data = await response.json();
+      setTodos(data);
 
-    const handleCreateTask = async (e) => {
+    } catch (error) {
+      console.error("Failed to fetch todos:", error);
+    }
+  }
+
+  useEffect(() => {
+    fetchTodos();
+  }, []);
+
+  const handleCreateTask = async (e) => {
     e.preventDefault();
     await createTask(task);
+    fetchTodos();
     setTask("");
-    refreshTodos();
-
-    }
+  }
 
   return (
     <section className="mx-auto w-full max-w-lg rounded-xl bg-white border-4 p-6 shadow">
@@ -33,7 +44,7 @@ export default function TodoClient({todoClientData}) {
           placeholder="Enter task here"
           value={task}
           onChange={(e) => setTask(e.target.value)}
-          
+
           required
           className="w-full px-3 py-2 border rounded"
         />
@@ -54,7 +65,10 @@ export default function TodoClient({todoClientData}) {
 
       {showTodos && (
         <div className="bg-rose-800 border-2 border-green-900 rounded-md p-4">
-          <TodoList todoListData={todos} />
+          <TodoList
+            todoListData={todos}
+            fetchTodos={fetchTodos}
+          />
         </div>
       )}
     </section>

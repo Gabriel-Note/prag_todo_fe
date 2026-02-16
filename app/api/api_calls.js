@@ -14,14 +14,14 @@ export async function createTask(task) {
     if (!response.ok) {
       throw new Error("Failed to create task");
     }
+    return response.JSON
   }
-
-
 
   catch (error) {
     console.error("Error:", error);
     throw error;
   }
+
 }
 
 export async function editTask(todo) {
@@ -33,16 +33,16 @@ export async function editTask(todo) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ 
+      body: JSON.stringify({
         name: todo.task
       }),
     });
 
-    if (!response.ok){
+    if (!response.ok) {
       throw new Error("Failed to update");
-    }  
+    }
   }
-  catch(error){
+  catch (error) {
     console.error("Error:", error);
     throw error;
   }

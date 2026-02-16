@@ -1,11 +1,13 @@
-import Image from "next/image";
 import { useState } from "react";
 import { editTask } from "../api/api_calls"
 
-export default function TodoList({ todoListData, onDelete }) {
+
+export default function TodoList({ todoListData, fetchTodos }) {
   const [hoveredId, setHoveredId] = useState(null);
   const [editingId, setEditingId] = useState(null);
   const [editText, setEditText] = useState("");
+  // const { todos, refreshTodos } = useTodos(todoListData);
+
 
   const handleEditClick = (todo) => {
     setEditingId(todo.id);
@@ -13,10 +15,11 @@ export default function TodoList({ todoListData, onDelete }) {
   };
 
   const handleSaveEdit = async (todo) => {
-    const newTask = {...todo, task: editText}
+    const newTask = { ...todo, task: editText }
     await editTask(newTask)
     setEditingId(null);
     setEditText("");
+    fetchTodos();
   };
 
   const handleCancelEdit = () => {
@@ -41,6 +44,14 @@ export default function TodoList({ todoListData, onDelete }) {
                   type="text"
                   value={editText}
                   onChange={(e) => setEditText(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      handleSaveEdit(todo);
+                    }
+                    if (e.key === 'Escape') {
+                      handleCancelEdit();
+                    }
+                  }}
                   className="w-full px-2 py-1 border rounded text-gray-800"
                   autoFocus
                 />
@@ -60,7 +71,7 @@ export default function TodoList({ todoListData, onDelete }) {
                 </div>
               </div>
             ) : (
-              <p 
+              <p
                 className="text-gray-800 break-words cursor-pointer hover:text-blue-600"
                 onClick={() => handleEditClick(todo)}
               >
