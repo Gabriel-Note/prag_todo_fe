@@ -9,7 +9,7 @@ export default function TodoList({ todoListData, fetchTodos }) {
   // const { todos, refreshTodos } = useTodos(todoListData);
 
 
-    const handleEditClick = (todo) => {
+  const handleEditClick = (todo) => {
     setEditingId(todo.id);
     setEditText(todo.task);
   };
@@ -44,6 +44,14 @@ export default function TodoList({ todoListData, fetchTodos }) {
                   type="text"
                   value={editText}
                   onChange={(e) => setEditText(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      handleSaveEdit(todo);
+                    }
+                    if (e.key === 'Escape') {
+                      handleCancelEdit();
+                    }
+                  }}
                   className="w-full px-2 py-1 border rounded text-gray-800"
                   autoFocus
                 />
