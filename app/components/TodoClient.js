@@ -23,15 +23,11 @@ export default function TodoClient() {
   }
 
   useEffect(() => {
-    console.log();
     fetchTodos();
   }, []);
 
   const handleCreateTask = async (e) => {
     e.preventDefault();
-    console.log("detta är vårt e: " + e);
-    console.log(e);
-
     await createTask(task);
     fetchTodos();
     setTask("");
