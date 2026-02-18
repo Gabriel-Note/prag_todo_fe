@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { editTask } from "../api/api_calls"
+import { deleteTask, editTask } from "../api/api_calls"
 
 
 export default function TodoList({ todoListData, fetchTodos }) {
@@ -25,6 +25,13 @@ export default function TodoList({ todoListData, fetchTodos }) {
   const handleCancelEdit = () => {
     setEditingId(null);
     setEditText("");
+  };
+
+  const handleDelete = async (todo) => {
+    await deleteTask(todo)
+    setEditingId(null);
+    setEditText("");
+    fetchTodos();
   };
 
   return (
@@ -84,7 +91,7 @@ export default function TodoList({ todoListData, fetchTodos }) {
           {hoveredId === todo.id && editingId !== todo.id && (
             <div className="absolute right-2 top-1/2 -translate-y-1/2">
               <button
-                onClick={() => onDelete(todo.id)}
+                onClick={() => handleDelete(todo.id)}
                 className="px-3 py-1 bg-red-500 text-white text-sm rounded hover:bg-red-600"
               >
                 Delete
