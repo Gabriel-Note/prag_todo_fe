@@ -47,3 +47,15 @@ export async function editTask(todo) {
     throw error;
   }
 }
+
+export async function deleteTask(todo) {
+  try {
+    const response = await fetch(`http://localhost:8080/tasks/${todo.id}`, {
+      method: "DELETE"
+    });
+  }
+  catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
+} 
