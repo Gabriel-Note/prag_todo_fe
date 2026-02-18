@@ -8,7 +8,7 @@ export async function createTask(task) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: task
+        description: task
       }),
     });
     if (!response.ok) {
@@ -34,7 +34,7 @@ export async function editTask(todo) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: todo.task
+        description: todo.task
       }),
     });
 
