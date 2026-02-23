@@ -39,18 +39,21 @@ export default function TodoList({ todoListData, fetchTodos }) {
       {todoListData && todoListData.map((todo) => (
         <div
           key={todo.id}
-          className="relative p-2 border rounded-lg gap-x-4 bg-gray-50 hover:bg-gray-100 transition-colors"
-          
+          className={`relative p-2 border rounded-lg gap-x-4 bg-gray-50 hover:bg-gray-100 transition-colors ${todo.completed
+            ? "line-through"
+            : ""
+            }`}
+
           onMouseEnter={() => setHoveredId(todo.id)}
           onMouseLeave={() => setHoveredId(null)}
         >
-            
+
           {/* Task text or edit input */}
           <div className="pr-20">
             {editingId === todo.id ? (
               <div className="space-y-2">
-                
-                <input 
+
+                <input
                   type="text"
                   value={editText}
                   onChange={(e) => setEditText(e.target.value)}
@@ -62,10 +65,10 @@ export default function TodoList({ todoListData, fetchTodos }) {
                       handleCancelEdit();
                     }
                   }}
-                  className="w-full px-2 py-1 border rounded text-gray-800 bg-red-300"
+                  className="w-full px-2 py-1 border rounded text-gray-800"
                   autoFocus
                 />
-                <div className="flex gap-2">
+                <div className="button1">
                   <button
                     onClick={() => handleSaveEdit(todo)}
                     className="px-3 py-1 bg-green-500 text-white text-sm rounded hover:bg-green-600"
