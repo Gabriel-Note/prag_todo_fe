@@ -11,11 +11,11 @@ export default function TodoList({ todoListData, fetchTodos }) {
 
   const handleEditClick = (todo) => {
     setEditingId(todo.id);
-    setEditText(todo.task);
+    setEditText(todo.description);
   };
 
   const handleSaveEdit = async (todo) => {
-    const newTask = { ...todo, task: editText }
+    const newTask = { ...todo, description: editText }
     await editTask(newTask)
     setEditingId(null);
     setEditText("");
@@ -82,7 +82,7 @@ export default function TodoList({ todoListData, fetchTodos }) {
                 className="text-gray-800 break-words cursor-pointer hover:text-blue-600"
                 onClick={() => handleEditClick(todo)}
               >
-                {todo.task}
+                {todo.description}
               </p>
             )}
           </div>

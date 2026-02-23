@@ -8,7 +8,7 @@ export async function createTask(task) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: task
+        description: task
       }),
     });
     if (!response.ok) {
@@ -27,14 +27,14 @@ export async function createTask(task) {
 export async function editTask(todo) {
   try {
     console.log("this is the todo id: " + todo.id);
-    console.log("this is the todo task: " + todo.task);
+    console.log("this is the todo description: " + todo.description);
     const response = await fetch(`http://localhost:8080/tasks/${todo.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: todo.task
+        description: todo.description
       }),
     });
 
