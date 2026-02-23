@@ -15,9 +15,9 @@ export default function TodoList({ todoListData, fetchTodos }) {
           className="relative p-2 border rounded-lg gap-x-4 bg-gray-50 hover:bg-gray-300 transition-colors"
           onClick={() => handleChangeCompleted(todo)}
         >
-          <div className={`text-gray-800 break-words ${todo.completed
-            ? "line-through"
-            : "bg-red-300"
+          <div className={`break-words ${todo.completed
+            ? "line-through text-gray-400"
+            : "text-gray-800"
             }`}
           >
             {todo.description}
