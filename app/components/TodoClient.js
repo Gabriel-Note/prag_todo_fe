@@ -1,30 +1,41 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TodoList from "./TodoList";
-import Image from "next/image";
-import createTask from "../api/api_calls"
-import { useTodos } from "../hooks/useTodos.js";
+import { createTask } from "../api/api_calls"
 
-console.log("useTodos imported:", useTodos);
-console.log("useTodos type:", typeof useTodos);
+export default function TodoClient() {
+  const [showTodos, setShowTodos] = useState(true);
+  const [task, setTask] = useState("");
+  const [todos, setTodos] = useState([]);
+  /* const { todos, refreshTodos } = useTodos(todoClientData); */
+  /* const {refreshLocal, setRefreshLocal } = useState(false); */
 
-export default function TodoClient({todoClientData}) {
-    const [showTodos, setShowTodos] = useState(true);
-    const [task, setTask] = useState("");
-    const { todos, refreshTodos } = useTodos(todoClientData);
+  async function fetchTodos() {
+    try {
+      const response = await fetch("http://localhost:8080/tasks");
+      const data = await response.json();
+      setTodos(data);
 
-    const handleCreateTask = async (e) => {
+    } catch (error) {
+      console.error("Failed to fetch todos:", error);
+    }
+  }
+
+  useEffect(() => {
+    fetchTodos();
+  }, []);
+
+  const handleCreateTask = async (e) => {
     e.preventDefault();
     await createTask(task);
+    fetchTodos();
     setTask("");
-    refreshTodos()
-
-    }
+  }
 
   return (
-    <section className="w-full max-w-md rounded-xl bg-white p-6 shadow">
-      <h1 className="mb-4 text-2xl font-semibold">📝 My Todos</h1>
+    <section className="mx-auto w-full max-w-lg rounded-xl bg-white border-4 p-6 shadow">
+      <h1 className="mb-4 text-2xl text-center text-zinc-800 font-bold">📝 My Todos</h1>
 
       {/* Create Form */}
       <form onSubmit={handleCreateTask} className="mb-4 space-y-2 text-black">
@@ -33,13 +44,13 @@ export default function TodoClient({todoClientData}) {
           placeholder="Enter task here"
           value={task}
           onChange={(e) => setTask(e.target.value)}
-          
+
           required
           className="w-full px-3 py-2 border rounded"
         />
         <button
           type="submit"
-          className="w-full rounded-md bg-green-500 px-4 py-2 text-white"
+          className="w-full rounded-md bg-green-900 px-4 py-2 text-white"
         >
           Add Task
         </button>
@@ -53,9 +64,12 @@ export default function TodoClient({todoClientData}) {
       </button>
 
       {showTodos && (
-        <>
-          <TodoList todoListData={todos} />
-        </>
+        <div className="bg-rose-800 border-2 border-green-900 rounded-md p-4">
+          <TodoList
+            todoListData={todos}
+            fetchTodos={fetchTodos}
+          />
+        </div>
       )}
     </section>
   );
