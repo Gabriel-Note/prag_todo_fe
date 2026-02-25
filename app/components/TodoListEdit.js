@@ -39,7 +39,7 @@ export default function TodoList({ todoListData, fetchTodos }) {
       {todoListData && todoListData.map((todo) => (
         <div
           key={todo.id}
-          className={`relative p-2 border rounded-lg gap-x-4 bg-gray-50 hover:bg-gray-100 transition-colors ${todo.completed
+          className={`pl-10 relative p-2 border rounded-lg gap-x-4 bg-gray-50 hover:bg-gray-100 transition-colors ${todo.completed
             ? "line-through decoration-[#ff0000da]"
             : ""
             }`}
@@ -47,12 +47,16 @@ export default function TodoList({ todoListData, fetchTodos }) {
           onMouseEnter={() => setHoveredId(todo.id)}
           onMouseLeave={() => setHoveredId(null)}
         >
+          <div className="absolute left-2 top-1/2 -translate-y-1/2"
+          >
+            {todo.completed ? "✅" : "⬜"}
+          </div>
 
           {/* Task text or edit input */}
           <div className="pr-20">
+
             {editingId === todo.id ? (
               <div className="space-y-2">
-
                 <input
                   type="text"
                   value={editText}
@@ -76,7 +80,7 @@ export default function TodoList({ todoListData, fetchTodos }) {
                     Save
                   </button>
                   <button
-                    onClick={handleCancelEdit}
+                    onClick={() => handleCancelEdit()}
                     className="px-3 py-1 bg-gray-500 text-white text-sm rounded hover:bg-gray-600"
                   >
                     Cancel
@@ -93,7 +97,6 @@ export default function TodoList({ todoListData, fetchTodos }) {
             )}
           </div>
 
-          {/* Delete button - show on hover (only when not editing) */}
           {editingId !== todo.id && (
             <div className="absolute right-2 top-1/2 -translate-y-1/2">
               <button
