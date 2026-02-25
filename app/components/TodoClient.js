@@ -84,14 +84,14 @@ export default function TodoClient() {
 
       
       {editTodos ? (
-        <div className="bg-rose-800 border-2 border-green-900 rounded-md p-4">
+        <div className="bg-[#ecc79f] border-2 border-green-900 rounded-md p-4">
           <TodoList
             todoListData={todos}
             fetchTodos={fetchTodos}
           />
         </div>
       ) : (
-        <div className="bg-rose-800 border-2 border-green-900 rounded-md p-4">
+        <div className="bg-[#ecc79f] border-2 border-green-900 rounded-md p-4">
           <TodoListEdit
           todoListData={todos}
           fetchTodos={fetchTodos}
