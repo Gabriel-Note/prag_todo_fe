@@ -40,7 +40,7 @@ export default function TodoList({ todoListData, fetchTodos }) {
         <div
           key={todo.id}
           className={`relative p-2 border rounded-lg gap-x-4 bg-gray-50 hover:bg-gray-100 transition-colors ${todo.completed
-            ? "line-through"
+            ? "line-through decoration-[#ff0000da]"
             : ""
             }`}
 
@@ -68,7 +68,7 @@ export default function TodoList({ todoListData, fetchTodos }) {
                   className="w-full px-2 py-1 border rounded text-gray-800"
                   autoFocus
                 />
-                <div className="button1">
+                <div className="space-x-2">
                   <button
                     onClick={() => handleSaveEdit(todo)}
                     className="px-3 py-1 bg-green-500 text-white text-sm rounded hover:bg-green-600"
