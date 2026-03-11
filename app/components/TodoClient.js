@@ -2,9 +2,11 @@
 
 import { useEffect, useState } from "react";
 import TodoList from "./TodoList";
+import TodoListEdit from "./TodoListEdit";
 import { createTask } from "../api/api_calls"
 
 export default function TodoClient() {
+  const [editTodos, setEditTodos] = useState(true);
   const [showTodos, setShowTodos] = useState(true);
   const [task, setTask] = useState("");
   const [todos, setTodos] = useState([]);
@@ -56,18 +58,43 @@ export default function TodoClient() {
         </button>
       </form>
 
-      <button
+      {/* <button
         onClick={() => setShowTodos(s => !s)}
         className="mb-4 w-full rounded-md bg-black px-4 py-2 text-white"
       >
         {showTodos ? "Hide todos" : "Show todos"}
+      </button> */}
+      <button
+        onClick={() => setEditTodos(edit => !edit)}
+        className="mb-4 w-full rounded-md bg-black px-4 py-2 text-white"
+      >
+        {editTodos ? "Edit" : "Stop editing"}
       </button>
 
-      {showTodos && (
+      {/* {showTodos && (
         <div className="bg-rose-800 border-2 border-green-900 rounded-md p-4">
           <TodoList
             todoListData={todos}
             fetchTodos={fetchTodos}
+          />
+        </div>
+      )} */}
+
+      
+
+      
+      {editTodos ? (
+        <div className="bg-[#ecc79f] border-2 border-green-900 rounded-md p-4">
+          <TodoList
+            todoListData={todos}
+            fetchTodos={fetchTodos}
+          />
+        </div>
+      ) : (
+        <div className="bg-[#ecc79f] border-2 border-green-900 rounded-md p-4">
+          <TodoListEdit
+          todoListData={todos}
+          fetchTodos={fetchTodos}
           />
         </div>
       )}

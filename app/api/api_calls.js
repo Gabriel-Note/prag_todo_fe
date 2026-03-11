@@ -59,3 +59,9 @@ export async function deleteTask(todo) {
     throw error;
   }
 } 
+
+export async function changeCompleted(todo) {
+    const response = await fetch(`http://localhost:8080/tasks/changeCompleted/${todo.id}`, {
+      method: "PUT"
+    });
+  }
