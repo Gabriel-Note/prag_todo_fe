@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import TodoList from "./TodoList";
 import TodoListEdit from "./TodoListEdit";
-import { createTask, getTaskLists, createTaskList, deleteTaskList } from "../api/api_calls";
+import { createTask, getTaskLists, createTaskList, deleteTaskList, getTasksByList } from "../api/api_calls";
 
 export default function TodoClient() {
   const [editTodos, setEditTodos] = useState(true);
@@ -24,14 +24,8 @@ export default function TodoClient() {
 
   async function fetchTodos(listId) {
     if (!listId) return;
-    try {
-      const response = await fetch(`http://localhost:8080/tasklists/${listId}/tasks`);
-      const text = await response.text();
-      const data = JSON.parse(text);
-      setTodos(Array.isArray(data) ? data : []);
-    } catch (error) {
-      console.error("Failed to fetch todos:", error);
-    }
+    const data = await getTasksByList(listId);
+    setTodos(Array.isArray(data) ? data : []);
   }
 
   useEffect(() => {
