@@ -31,9 +31,9 @@ body {
 
 .navbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: left;
   background-color: rgb(57, 27, 97);
-  height: 64px;
+  height: 100px;
   border-bottom: 10px solid rgb(94, 46, 136);
 }
 
@@ -41,17 +41,23 @@ body {
   display: flex;
   list-style: none;
   gap: 10px;
-  padding-left: 3px 0;
+  padding-left: 30px;
+  padding-right: 30px;
+  justify-content: center;
 }
 
 .navbar__list a {
   text-decoration: none;
   color: var(--color-text);
+}
 
+#logo {
+  float: left;
 }
 
 
 .footer {
+  position: fixed; bottom: 0;
   display: flex;
   justify-content: center;
   padding: var(--space-lg);
