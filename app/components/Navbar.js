@@ -1,34 +1,24 @@
 'use client';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 
 export default function Navbar() {
-  const pathname = usePathname();
 
   return (
     <header className="navbar">
-      <Link href="/" className="navbar__logo">My Project</Link>
+      <a href="/" className="navbar__logo">
+      <img src="data:image/png;base64,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" alt="Logo" width="50" height="100"/></a>
       <nav aria-label="Main navigation">
         <ul className="navbar__list">
           <li>
-            <Link href="/" aria-current={pathname === '/home' ? 'page' : undefined}>
-              Home
-            </Link>
+            <a href='/'>Home</a>
           </li>
           <li>
-            <Link href="/about" aria-current={pathname === '/about' ? 'page' : undefined}>
-              About
-            </Link>
+            <a href='/about'>About</a>
           </li>
           <li>
-            <Link href="/my-lists" aria-current={pathname === '/my-lists' ? 'page' : undefined}>
-              My Lists
-            </Link>
+            <a href='/my-lists'>My Lists</a>
           </li>
           <li>
-            <Link href="/contact" aria-current={pathname === '/contact' ? 'page' : undefined}>
-              Contact
-            </Link>
+            <a href='/contact'>Contact</a>
           </li>
           
         </ul>
