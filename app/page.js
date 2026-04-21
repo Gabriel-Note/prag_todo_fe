@@ -7,6 +7,9 @@ export default async function Home() {
   const data = await resp.json();
  */
   return (
-    <TodoClient /* todoClientData={data} *//> 
+    <main className="home">
+      <h1>Just a test</h1>
+    </main>
   );
+
 }
