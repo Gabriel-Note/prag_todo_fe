@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
     <footer className="footer">
-      <p>© {new Date().getFullYear()} Mitt projekt</p>
+      <p>© {new Date().getFullYear()} The Greatest To Do List That Ever Was™</p>
     </footer>
   );
 }
