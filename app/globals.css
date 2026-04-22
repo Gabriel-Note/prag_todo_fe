@@ -28,3 +28,15 @@ body {
 .button1 {
   padding-right: 20px;
 }
+
+
+
+header, footer {
+  background-color: black;
+  color: var(--foreground);
+  padding: 1rem;
+}
+
+header{
+  margin-bottom: 3rem;
+}
