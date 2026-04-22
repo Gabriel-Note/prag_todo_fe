@@ -2,7 +2,8 @@
 
 function handleLogin(event) {
   event.preventDefault();
-  console.log("vi loggade in");
+  localStorage.setItem("isLoggedIn", "true");
+  window.location.reload();
 }
 
 export default function Login() {
