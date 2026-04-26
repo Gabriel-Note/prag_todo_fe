@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { deleteTask, editTask } from "../api/api_calls"
+import { deleteTask, editTask } from "../../api/api_calls"
 
 
 export default function TodoList({ todoListData, fetchTodos }) {

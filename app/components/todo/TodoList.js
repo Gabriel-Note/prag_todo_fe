@@ -1,4 +1,4 @@
-import { changeCompleted } from "../api/api_calls"
+import { changeCompleted } from "../../api/api_calls"
 
 export default function TodoList({ todoListData, fetchTodos }) {
 

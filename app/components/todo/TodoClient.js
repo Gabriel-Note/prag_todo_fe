@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import TodoList from "../TodoList";
-import TodoListEdit from "../TodoListEdit";
+import TodoList from "./TodoList";
+import TodoListEdit from "./TodoListEdit";
 import { createTask, getTasksByList } from "../../api/api_calls";
 
 export default function TodoClient({ selectedList }) {
