@@ -40,8 +40,8 @@ export default function ListsSidebar({ selectedList, setSelectedList }) {
   };
 
   return (
-    <div className="w-64 bg-white border p-4 rounded-xl shadow">
-      <h2 className="text-xl font-bold mb-4">Lists</h2>
+    <div className="w-75 bg-white border p-2 rounded-xl shadow">
+      <h2 className="text-xl font-bold mb-4 text-black">Lists</h2>
 
       {/* Create list */}
       <form onSubmit={handleCreateList} className="mb-4 flex gap-2">

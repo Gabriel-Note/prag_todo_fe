@@ -8,17 +8,21 @@ export default function ListsPageClient() {
   const [selectedList, setSelectedList] = useState(null);
 
   return (
-    <div className="flex gap-6 p-6">
+    <div className="flex flex-row gap-4 p-6">
+      <div className="flex-[0.25]">
       
-      {/* LEFT SIDE */}
-      <ListsSidebar
-        selectedList={selectedList}
-        setSelectedList={setSelectedList}
-      />
+        {/* LEFT SIDE */}
+        <ListsSidebar
+          selectedList={selectedList}
+          setSelectedList={setSelectedList}
+        />
+      </div>
+      <div className="flex-1">
 
-      {/* RIGHT SIDE */}
-      <TodoClient selectedList={selectedList} />
+        {/* RIGHT SIDE */}
+        <TodoClient selectedList={selectedList} />
 
+      </div>
     </div>
   );
 }
