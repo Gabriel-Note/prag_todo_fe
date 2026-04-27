@@ -37,7 +37,7 @@ export default function TodoClient({ selectedList }) {
 
   return (
     <div className="flex-1 bg-white border p-6 rounded-xl shadow">
-      <h2 className="text-2xl font-bold mb-4">
+      <h2 className="text-2xl font-bold mb-4 text-black">
         {selectedList.name}
       </h2>
 
