@@ -66,8 +66,8 @@ export default function ListsSidebar({ selectedList, setSelectedList }) {
               onClick={() => setSelectedList(list)}
               className={`flex-1 px-2 py-1 rounded text-white ${
                 selectedList?.id === list.id
-                  ? "bg-green-900"
-                  : "bg-zinc-500"
+                  ? "bg-blue-800"
+                  : "bg-blue-950"
               }`}
             >
               {list.name}

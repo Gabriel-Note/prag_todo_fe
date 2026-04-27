@@ -62,7 +62,7 @@ export default function TodoClient({ selectedList }) {
       </button>
 
       {/* Tasks */}
-      <div className="bg-[#ecc79f] p-4 rounded">
+      <div className="bg-blue-800 p-4 rounded">
         {editTodos ? (
           <TodoList
             todoListData={todos}
